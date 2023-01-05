@@ -1,4 +1,5 @@
 {
     "mongoURI":"mongodb+srv://rani1992:rani1992@cluster0.xokvi.mongodb.net/Fix-It-DB?retryWrites=true&w=majority",
-    "jwtSecret":"McQfTjWnZr4u7x!A%D*F-JaNdRgUkXp2"
+    "jwtSecret":"McQfTjWnZr4u7x!A%D*F-JaNdRgUkXp2",
+    "https_only":true
 }
