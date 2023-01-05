@@ -55,7 +55,7 @@ const Login = ({ login, isAuthenticated }) => {
           <input type='submit' className='btn btn-success my-1' value='Log ind' />
         </form>
         <p className='my-1'>
-          Har du ikke en konto? <Link to='/register'>Tilmelde Dig</Link>
+          Har du ikke en konto? <Link to='/register'>Tilmeld dig</Link>
         </p>
       </section>
     </Fragment>
