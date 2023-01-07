@@ -1,14 +1,10 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
-const redirectSsl = require('redirect-ssl');
-const sslRedirect = require('heroku-ssl-redirect');
 const app = express();
 
 connectDB();
 
-app.use(redirectSsl);
-app.use(sslRedirect());
 app.use(express.json({ extended: false }));
 
 app.use('/api/users', require('./routes/api/users'));
