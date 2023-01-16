@@ -8,6 +8,7 @@ import PostForm from './PostForm';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
+    document.title = 'Posts';
     getPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -17,8 +18,13 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     <Fragment>
       <div className='flex-box'>
         <div className='flex-box-content'>
-          <aside className='aside aside-1'></aside>
           <section className='main-content'>
+            <PostForm />
+            {posts.map(post => (
+              <PostItem key={post._id} post={post} />
+            ))}
+          </section>
+          <aside className='aside aside-1'>
             <div className='search-wrapper mb-1'>
               <div className='label'>Søg på Fix it</div>
               <div className='searchBar'>
@@ -42,13 +48,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
                 </button>
               </div>
             </div>
-            <PostForm />
-            <div className='posts'>
-              {posts.map(post => (
-                <PostItem key={post._id} post={post} />
-              ))}
-            </div>
-          </section>
+          </aside>
         </div>
       </div>
     </Fragment>

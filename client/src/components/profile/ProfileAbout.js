@@ -18,11 +18,11 @@ const ProfileAbout = ({
           <div className='line'></div>
         </Fragment>
       )}
-      <h2 className='text-primary'>Skill Set</h2>
-      <div className='skills'>
+      <h2 className='text-primary'>Færdigheder</h2>
+      <div className='tools-flex f-flex'>
         {skills.map((skill, index) => (
-          <div key={index} className='p-1'>
-            <i className='fas fa-check'> {skill}</i>
+          <div key={index} className='tools-items'>
+            <i className='fa fa-solid fa-circle-check'></i> {skill}
           </div>
         ))}
       </div>

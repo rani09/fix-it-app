@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
@@ -6,6 +6,9 @@ import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
+  useEffect(() => {
+    document.title = 'Tilmeld dig';
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',

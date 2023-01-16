@@ -12,19 +12,26 @@ const ProfileTop = ({
   },
 }) => {
   return (
-    <div className='profile-top p-2'>
-      <img className='round-img my-1' src={avatar} alt='' />
-      <h1 className='large'>{name}</h1>
-      <p className='lead'>
-        {status} {company && <span>at {company}</span>}
-      </p>
-      <p>{location && <span>{location}</span>}</p>
-      <div className='icons my-1'>
-        {website && (
-          <a href={website} target='_blank' rel='noopener noreferrer'>
-            <i className='fas fa-globe fa-2x'></i>
-          </a>
-        )}
+    <div className='post'>
+      <div className='post-header'>
+        <img className='post-profile-image' src={avatar} alt='' />
+        <div className='post-header-text'>
+          <h3 className='post-name'>{name}</h3>
+          <p className='post-date'>
+            {status} {company && <span>at {company}</span>}
+            <br />
+            {location && <span>{location}</span>}
+          </p>
+        </div>
+      </div>
+      <div className='post-body'>
+        <div className='icons my-1'>
+          {website && (
+            <a href={website} target='_blank' rel='noopener noreferrer'>
+              <i className='fas fa-globe fa-2x'></i>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,10 +1,13 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 
 const Login = ({ login, isAuthenticated }) => {
+  useEffect(() => {
+    document.title = 'Log ind';
+  }, []);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -20,7 +23,7 @@ const Login = ({ login, isAuthenticated }) => {
     login(email, password);
   };
   if (isAuthenticated) {
-    return <Navigate to='/dashboard' />;
+    return <Navigate to='/posts' />;
   }
   return (
     <Fragment>
@@ -39,10 +42,9 @@ const Login = ({ login, isAuthenticated }) => {
               value={email}
               onChange={e => onChange(e)}
             />
-            
           </div>
           <div className='form-group'>
-          <small className='form-text'>Adgangskode</small>
+            <small className='form-text'>Adgangskode</small>
             <input
               type='password'
               placeholder='Password'
@@ -52,7 +54,11 @@ const Login = ({ login, isAuthenticated }) => {
               minLength='6'
             />
           </div>
-          <input type='submit' className='btn btn-success my-1' value='Log ind' />
+          <input
+            type='submit'
+            className='btn btn-success my-1'
+            value='Log ind'
+          />
         </form>
         <p className='my-1'>
           Har du ikke en konto? <Link to='/register'>Tilmeld dig</Link>

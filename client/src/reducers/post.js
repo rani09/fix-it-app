@@ -8,6 +8,7 @@ import {
   POST_ERROR,
   UPDATE_LIKES,
 } from '../actions/types';
+
 const initialState = {
   posts: [],
   post: null,

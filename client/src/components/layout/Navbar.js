@@ -15,13 +15,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <NavLink to='/profiles' onClick={() => setShowNavbar(!showNavbar)}>
-          Companies
+        <NavLink to='/posts' onClick={() => setShowNavbar(!showNavbar)}>
+          Posts
         </NavLink>
       </li>
       <li>
-        <NavLink to='/posts' onClick={() => setShowNavbar(!showNavbar)}>
-          Posts
+        <NavLink to='/profiles' onClick={() => setShowNavbar(!showNavbar)}>
+          Virksomheder
         </NavLink>
       </li>
       <li>
@@ -46,18 +46,23 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const gusetLinks = (
     <ul>
       <li>
+        <NavLink to='/posts' onClick={() => setShowNavbar(!showNavbar)}>
+          Posts
+        </NavLink>
+      </li>
+      <li>
         <NavLink to='/profiles' onClick={() => setShowNavbar(!showNavbar)}>
-          VIRKSOMHEDER
+          Virksomheder
         </NavLink>
       </li>
       <li>
         <NavLink to='/register' onClick={() => setShowNavbar(!showNavbar)}>
-          TILMELD DIG
+          Tilmeld dig
         </NavLink>
       </li>
       <li>
         <NavLink to='/login' onClick={() => setShowNavbar(!showNavbar)}>
-          LOG IND
+          Log ind
         </NavLink>
       </li>
     </ul>

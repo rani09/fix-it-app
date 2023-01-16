@@ -12,25 +12,30 @@ const ProfileItem = ({
   },
 }) => {
   return (
-    <div className='profile bg-profile'>
-      <img src={avatar} alt='' className='round-img' />
-      <div>
-        <h2>{name}</h2>
-        <p>
-          {status} {company && <span> hos {company}</span>}
-        </p>
-        <p className='my-1'>{location && <span>{location}</span>}</p>
+    <div className='post'>
+      <div className='post-header'>
+        <img src={avatar} alt='' className='post-profile-image' />
+        <div className='post-header-text'>
+          <h3 className='post-name'>{name}</h3>
+          <div className='post-date'>
+            {status} {company && <span> hos {company}</span>}
+            <br />
+            {location && <span>{location}</span>}
+          </div>
+        </div>
         <Link to={`/profile/${_id}`} className='btn btn-primary'>
           Se profil
         </Link>
       </div>
-      <ul>
-        {skills.slice(0, 4).map((skill, index) => (
-          <li key={index} className='text-primary'>
-            <i className='fas fa-check'></i> {skill}
-          </li>
-        ))}
-      </ul>
+      <div className='post-body'>
+        <ul className='tools-flex'>
+          {skills.slice(0, 4).map((skill, index) => (
+            <li key={index} className='text-primary tools-items'>
+              <i className='fa fa-solid fa-circle-check'></i> {skill}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

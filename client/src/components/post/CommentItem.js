@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,32 +9,45 @@ const CommentItem = ({
   postId,
   comment: { _id, text, name, avatar, user, date },
   auth,
-  deleteComment
-}) => (
-  <div className='post flex-box-post p-1 my-1'>
-    <div>
-      <Link to={`/profile/${user}`}>
-        <img className='round-img' src={avatar} alt='' />
-        <h4>{name}</h4>
-      </Link>
-    </div>
-    <div>
-      <p className='my-1'>{text}</p>
-      <p className='post-date'>
-        Posted on <Moment format='DD/MM/YYYY'>{date}</Moment>
-      </p>
-      {!auth.loading && user === auth.user._id && (
-        <button
-          onClick={e => deleteComment(postId, _id)}
-          type='button'
-          className='btn btn-danger'
-        >
-          <i className='fas fa-times'></i>
+  deleteComment,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+  return (
+    <div className='post'>
+      <div className='post-header'>
+        <Link to={`/profile/${user}`}>
+          <img className='round-img' src={avatar} alt='' />
+          <h3 className='post-name'>{name}</h3>
+        </Link>
+        <div className='post-header-text'>
+          <h3 className='post-name'>{name}</h3>
+          <p className='post-date'>
+            Posted on <Moment format='DD/MM/YYYY'>{date}</Moment>
+          </p>
+        </div>
+        <button className='settings-toggle' onClick={handleClick}>
+          <i class='fa fa-ellipsis-vertical'></i>
         </button>
-      )}
+        {!auth.loading && user === auth.user._id && isOpen && (
+          <div className='settings-menu'>
+            <ul className='dropdown-content'>
+              <a onClick={e => deleteComment(postId, _id)} type='button'>
+                <i class='fa fa-trash-can'></i> Fjern post
+              </a>
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className='post-body'>
+        <p className='post-text'>{text}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 CommentItem.propTypes = {
   postId: PropTypes.number.isRequired,

@@ -24,8 +24,8 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
           <Fragment>
             <div className='flex-item'>
               <Link to='/profiles' className='btn btn-light'>
-              <i className="fa-solid fa-arrow-left"></i>{' '}
-                Tilbage til virksomheder
+                <i className='fa-solid fa-arrow-left'></i> Tilbage til
+                virksomheder
               </Link>
               {auth.isAuthenticated &&
                 auth.loading === false &&

@@ -6,11 +6,12 @@ import Spinner from '../layout/Spinner';
 import { getPost } from '../../actions/post';
 import PostItem from '../posts/PostItem';
 import CommentForm from './CommentForm';
-import CommentItem from '../post/CommentItem';
+import CommentItem from './CommentItem';
 
 const Post = ({ getPost, post: { post, loading } }) => {
   const { id } = useParams();
   useEffect(() => {
+    document.title = 'Post';
     getPost(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

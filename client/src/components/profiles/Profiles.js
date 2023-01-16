@@ -7,6 +7,7 @@ import ProfileItem from './ProfileItem';
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
+    document.title = 'Virksomheder';
     getProfiles();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -22,15 +23,14 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
               <i className='fab fa-connectdevelop'></i> Gennemse og få kontakt
               med virksomheder
             </p>
-            <div className='profiles'>
-              {profiles.length > 0 ? (
-                profiles.map(profile => (
-                  <ProfileItem key={profile._id} profile={profile} />
-                ))
-              ) : (
-                <h4>Ingen virksomheder fundet...</h4>
-              )}
-            </div>
+
+            {profiles.length > 0 ? (
+              profiles.map(profile => (
+                <ProfileItem key={profile._id} profile={profile} />
+              ))
+            ) : (
+              <h4>Ingen virksomheder fundet...</h4>
+            )}
           </section>
         </Fragment>
       )}

@@ -2,14 +2,49 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
-
+const multer = require('multer');
+const path = require('path');
 const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './images');
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + '-' + file.originalname);
+  },
+});
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg' ||
+    file.mimetype === 'video/mp4'
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 6,
+  },
+  fileFilter: fileFilter,
+});
+
 router.post(
   '/',
-  [auth, check('text', 'Text is required')],
+  upload.single('imageUrl'),
+  [
+    auth,
+    check('text', 'Text is required'),
+    check('tools', 'Tools is required').not().isEmpty(),
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -20,12 +55,14 @@ router.post(
       const user = await User.findById(req.user.id).select('-password');
 
       const newPost = new Post({
+        title: req.body.title,
         text: req.body.text,
+        imageUrl: req.file.path,
+        tools: req.body.tools.split(',').map(tool => tool.trim()),
         name: user.name,
         avatar: user.avatar,
         user: req.user.id,
       });
-
       const post = await newPost.save();
 
       res.json(post);

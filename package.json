@@ -13,6 +13,7 @@
   "author": "Rani Hermez",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.2.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
     "cloudinary": "^1.33.0",
@@ -29,6 +30,9 @@
   },
   "devDependencies": {
     "concurrently": "^7.6.0",
-    "nodemon": "^2.0.20"
+    "jest": "^28.1.0",
+    "jest-mock-axios": "^4.7.0-beta2",
+    "nodemon": "^2.0.20",
+    "puppeteer": "^14.1.0"
   }
 }
