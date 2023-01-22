@@ -51,13 +51,19 @@ const PostItem = ({
     setIsOpen(!isOpen);
   };
 
-  const handleLike = () => {
+  const handleLike = e => {
+    e.preventDefault();
     if (liked) {
       removeLike(_id);
     } else {
       addLike(_id);
     }
     setLiked(!liked);
+  };
+
+  const handleDelete = e => {
+    e.preventDefault();
+    deletePost(_id);
   };
 
   return (
@@ -79,9 +85,9 @@ const PostItem = ({
           <div className='settings-menu'>
             <ul className='dropdown-content'>
               <li>
-                <a onClick={e => deletePost(_id)} type='button'>
+                <button onClick={handleDelete} type='button'>
                   <i class='fa fa-trash-can'></i> Fjern oplæg
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -95,10 +101,13 @@ const PostItem = ({
             <source src={imageUrl} type='video/mp4' />
           </video>
         ) : (
-          <img src={imageUrl} alt='Post image' className='post-image' />
+          <img
+            src={imageUrl}
+            alt={`A ${title} by ${name}`}
+            className='post-image'
+          />
         )}
         <div>
-          <hr />
           <h4>Værktøjer</h4>
           <ul className='tools-flex'>
             {tools.slice(0, 4).map((tool, index) => (
@@ -114,11 +123,11 @@ const PostItem = ({
           <Fragment>
             <div className='post-button'>
               <div className='like-flex'>
-                <button className='like-options' onClick={handleLike}>
+                <button className='like-options' href='#' onClick={handleLike}>
                   {liked ? (
-                    <img src={Liked} className='like' />
+                    <img src={Liked} className='like' alt='unlike' />
                   ) : (
-                    <img src={Like} className='like' />
+                    <img src={Like} className='like' alt='like' />
                   )}
                 </button>
                 {likes.length > 0 && (

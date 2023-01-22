@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
@@ -7,6 +7,7 @@ import { getPosts } from '../../actions/post';
 import PostForm from './PostForm';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
+  const [search, setSearch] = useState('');
   useEffect(() => {
     document.title = 'Posts';
     getPosts();
@@ -18,12 +19,6 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     <Fragment>
       <div className='flex-box'>
         <div className='flex-box-content'>
-          <section className='main-content'>
-            <PostForm />
-            {posts.map(post => (
-              <PostItem key={post._id} post={post} />
-            ))}
-          </section>
           <aside className='aside aside-1'>
             <div className='search-wrapper mb-1'>
               <div className='label'>Søg på Fix it</div>
@@ -33,6 +28,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
                   type='text'
                   name='searchQueryInput'
                   placeholder='Søg her...'
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
                 />
                 <button
                   id='searchQuerySubmit'
@@ -49,6 +46,19 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
               </div>
             </div>
           </aside>
+          <section className='main-content'>
+            <PostForm />
+
+            {posts
+              .filter(
+                post =>
+                  post.text.toLowerCase().includes(search.toLowerCase()) ||
+                  post.title.toLowerCase().includes(search.toLowerCase())
+              )
+              .map(post => (
+                <PostItem key={post._id} post={post} />
+              ))}
+          </section>
         </div>
       </div>
     </Fragment>
