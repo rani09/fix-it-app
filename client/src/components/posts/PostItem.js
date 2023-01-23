@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { addLike, removeLike, deletePost } from '../../actions/post';
 import Like from '../../images/like.png';
-import Liked from '../../images/liked.png';
+import UnLike from '../../images/liked.png';
 const PostItem = ({
   addLike,
   removeLike,
@@ -79,14 +79,18 @@ const PostItem = ({
           </p>
         </div>
         <button className='settings-toggle' onClick={handleClick}>
-          <i class='fa fa-ellipsis-vertical'></i>
+          <i className='fa fa-ellipsis-vertical'></i>
         </button>
         {!auth.loading && user === auth.user._id && isOpen && (
           <div className='settings-menu'>
             <ul className='dropdown-content'>
               <li>
-                <button onClick={handleDelete} type='button'>
-                  <i class='fa fa-trash-can'></i> Fjern oplæg
+                <button
+                  onClick={handleDelete}
+                  className='like-options'
+                  type='button'
+                >
+                  <i className='fa fa-trash-can'></i> Fjern oplæg
                 </button>
               </li>
             </ul>
@@ -125,7 +129,7 @@ const PostItem = ({
               <div className='like-flex'>
                 <button className='like-options' href='#' onClick={handleLike}>
                   {liked ? (
-                    <img src={Liked} className='like' alt='unlike' />
+                    <img src={UnLike} className='like' alt='unlike' />
                   ) : (
                     <img src={Like} className='like' alt='like' />
                   )}

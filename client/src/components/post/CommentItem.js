@@ -30,14 +30,18 @@ const CommentItem = ({
           </p>
         </div>
         <button className='settings-toggle' onClick={handleClick}>
-          <i class='fa fa-ellipsis-vertical'></i>
+          <i className='fa fa-ellipsis-vertical'></i>
         </button>
         {!auth.loading && user === auth.user._id && isOpen && (
           <div className='settings-menu'>
             <ul className='dropdown-content'>
-              <a onClick={e => deleteComment(postId, _id)} type='button'>
-                <i class='fa fa-trash-can'></i> Fjern post
-              </a>
+              <button
+                onClick={e => deleteComment(postId, _id)}
+                className='like-options'
+                type='button'
+              >
+                <i className='fa fa-trash-can'></i> Fjern post
+              </button>
             </ul>
           </div>
         )}

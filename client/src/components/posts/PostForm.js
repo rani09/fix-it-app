@@ -80,18 +80,18 @@ const PostForm = ({ addPost }) => {
             />
           </div>
           <div class='input-group'>
-          <label>Beskrivelse</label>
-          <textarea
-            type='text'
-            name='text'
-            cols='30'
-            rows='3'
-            className='text-area'
-            placeholder='Beskrivelse af posten'
-            value={text}
-            onChange={e => onChange(e)}
-            required
-          ></textarea>
+            <label>Beskrivelse</label>
+            <textarea
+              type='text'
+              name='text'
+              cols='30'
+              rows='3'
+              className='text-area'
+              placeholder='Beskrivelse af posten'
+              value={text}
+              onChange={e => onChange(e)}
+              required
+            ></textarea>
           </div>
           <div className='m'>
             {selectedOptions.length === 0 ? (
@@ -115,7 +115,6 @@ const PostForm = ({ addPost }) => {
             ariaHideApp={false}
             className='modal'
             overlayClassName='modal-overlay'
-            style={{ content: { width: '500px', height: 'auto' } }}
           >
             <h2>
               <i class='fa fa-screwdriver-wrench'></i> Vælg værktøjer
